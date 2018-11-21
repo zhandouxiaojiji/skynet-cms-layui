@@ -3,22 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>开始使用layui</title>
+  <title>欢迎使用Skynet后台</title>
   <link rel="stylesheet" href="./layui/css/layui.css">
 </head>
 <body>
- 
-<!-- 你的HTML代码 -->
- 
+
+<div class="layui-container">
+	<div class="layui-row">
+		<h>Skynet</h>
+	</div>
+</div>
+
 <script src="./layui/layui.js"></script>
-<script>
-//一般直接写在一个js文件中
-layui.use(['layer', 'form'], function(){
-  var layer = layui.layer
-  ,form = layui.form;
-  
-  layer.msg('Login!');
-});
-</script> 
+<script src="./js/skynet.js"></script>
+<script src="./js/login.js"></script> 
+
 </body>
 </html>
