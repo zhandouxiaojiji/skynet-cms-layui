@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>欢迎使用Skynet后台</title>
-  <link rel="stylesheet" href="./layui/css/layui.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>欢迎使用Skynet后台</title>
+	<link rel="stylesheet" href="./layui/css/layui.css">
 </head>
-<body>
+<body class = "layui-bg-black">
 
 <div class="layui-container">
-	<div class="layui-row">
-		<h>Skynet</h>
+	<div class="layui-row" align="center" style="height: 280px" >
+		<img src = "./images/login_logo.png" style="padding-top:40px" />
+	</div>
+	<div class="layui-container " align="center" style="width:350px">
+		<form class="layui-form" action="">
+			<div class="layui-form-item">
+		     	<input type="text" name="url" placeholder="host:port" autocomplete="off" class="layui-input">
+			</div>
+			<div class="layui-form-item">
+		     	<input type="text" name="account" placeholder="account" autocomplete="off" class="layui-input">
+			</div>
+			<div class="layui-form-item">
+		     	<input type="password" name="password" placeholder="password" autocomplete="off" class="layui-input">
+			</div>
+			<div class="layui-form-item">
+			    <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login" >登陆</button>
+	    	</div>
+	    	<div class="layui-form-item">
+				<button class="layui-btn layui-btn-primary layui-btn-fluid"type = "button" id = "helpBtn">帮助</button>
+			</div>
+		</form>
 	</div>
 </div>
 
 <script src="./layui/layui.js"></script>
 <script src="./js/skynet.js"></script>
-<script src="./js/login.js"></script> 
+<script src="./js/login.js"></script>
 
 </body>
 </html>

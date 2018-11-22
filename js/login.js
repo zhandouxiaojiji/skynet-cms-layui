@@ -1,6 +1,13 @@
-layui.use(['layer', 'form'], function(){
-  var layer = layui.layer
-  ,form = layui.form;
-  
-  layer.msg('Login!');
+layui.use(['form', 'jquery'], function(){
+  	var $ = layui.jquery
+  	var form = layui.form;
+  	//监听提交
+  	form.on('submit(login)', function(data){
+    	layer.msg(JSON.stringify(data.field));
+    	return false;
+  	});
+	
+  	$('#helpBtn').click(function(){
+  		window.location.href = "http://github.com/zhandouxiaojiji/SkynetConsole"
+  	});
 });
