@@ -1,6 +1,6 @@
 layui.use(['layer', 'form'], function(){
-  var layer = layui.layer
-  ,form = layui.form;
+  var layer = layui.layer;
+  var form = layui.form;
   
   layer.msg('Hello World');
 });
