@@ -1,4 +1,4 @@
-layui.use(['layer', 'form', 'session', 'skynet'], function(){
+layui.use(['layer', 'element', 'session', 'skynet'], function(){
   	var $ = layui.jquery;
   	var skynet = layui.skynet;
   	var session = layui.session;
