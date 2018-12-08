@@ -1,10 +1,11 @@
-layui.use(['layer', 'form'], function(){
-  var layer = layui.layer;
-  var form = layui.form;
-  
-  layer.msg('Hello World');
+layui.use(['layer', 'form', 'session', 'skynet'], function(){
+  	var $ = layui.jquery;
+  	var skynet = layui.skynet;
+  	var session = layui.session;
+	var layer = layui.layer;
+	layer.msg('Hello World');
+
+	session.call("/cms/view/menu", {}, function(data){
+		console.log(data);
+	});
 });
-alert(layui.sessionData('test').a);
-layui.sessionData('test', {key:'a', value:111});
-alert(layui.sessionData('test').a);
-window.location.href = "login.html"

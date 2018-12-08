@@ -1,11 +1,12 @@
-layui.use(['form', 'jquery', 'skynet', 'session'], function(){
-  	var $ = layui.jquery
+layui.use(['form', 'skynet', 'session'], function(){
+  	var $ = layui.jquery;
+  	var session = layui.session;
   	var form = layui.form;
   	//监听提交
   	form.on('submit(login)', function(data){
     	layer.msg(JSON.stringify(data.field));
-    	layui.session.setLastServer(data.field.server);
-    	alert(data.field.server);
+    	layui.session.setLastServerName(data.field.server);
+	    session.login(data.field.account, data.field.password);
     	return false;
   	});
 
@@ -15,7 +16,7 @@ layui.use(['form', 'jquery', 'skynet', 'session'], function(){
 		let server = window.serverlist[i];
 		$('#serverSelect').append("<option value="+server.name+">"+server.desc+"</option>");
 	}
-	var last = layui.session.getLastServer();
+	var last = session.getLastServerName();
 	if(last){
 		$('#serverSelect').val(last);
 	}
