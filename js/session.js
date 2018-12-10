@@ -79,7 +79,8 @@ layui.define(function(exports){
     					console.log("授权错误，回到登陆界面", authorization);
     					window.location.href = "login.html";
     				} else {
-	    				console.log("call "+api+", error:"+data);
+                        console.log("call "+api+", error:");
+                        console.log(data);
     				}
     			}
     		});
