@@ -1,3 +1,6 @@
+layui.config({
+    base : "../../js/"
+})
 layui.use(['form','layer','jquery', 'session'],function(){
     var form = layui.form,
         layer = parent.layer === undefined ? layui.layer : top.layer,
@@ -35,4 +38,16 @@ layui.use(['form','layer','jquery', 'session'],function(){
             $(this).parent().removeClass("layui-input-active");
         }
     })
+
+    
+    $('#serverSelect').empty();
+    for (i in window.serverlist){
+        let server = window.serverlist[i];
+        $('#serverSelect').append("<option value="+server.name+">"+server.desc+"</option>");
+    }   
+    var last = session.getLastServerName();
+    if(last){                                                                                                                                                                                                                            
+        $('#serverSelect').val(last);
+    }   
+    form.render();
 })
