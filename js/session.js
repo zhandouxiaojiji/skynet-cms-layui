@@ -61,7 +61,7 @@ layui.define(function(exports){
     	call:function(api, data, cb){
     		if (!server) {
     			console.log("未登陆");
-    			// window.location.href = "login.html";
+    			window.location.href = "login.html";
     		}
     		$.ajax({
     			type:"POST",
@@ -77,7 +77,7 @@ layui.define(function(exports){
     					cb(data);
     				} else if (data.err == 4) {
     					console.log("授权错误，回到登陆界面", authorization);
-    					// window.location.href = "login.html";
+    					window.location.href = "login.html";
     				} else {
 	    				console.log("call "+api+", error:"+data);
     				}

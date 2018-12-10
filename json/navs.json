@@ -27,7 +27,7 @@
 				{
 					"title": "登录",
 					"icon": "&#xe609;",
-					"href": "page/login/login.html",
+					"href": "login.html",
 					"spread": false,
 					"target": "_blank"
 				}

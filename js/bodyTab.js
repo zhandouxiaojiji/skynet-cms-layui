@@ -6,7 +6,7 @@
 */
 var tabFilter,menu=[],liIndex,curNav,delMenu,
     changeRefreshStr = window.sessionStorage.getItem("changeRefresh");
-layui.define(["element","jquery"],function(exports){
+layui.define(["element","jquery","session"],function(exports){
 	var element = layui.element,
 		$ = layui.$,
 		layId,
@@ -65,7 +65,7 @@ layui.define(["element","jquery"],function(exports){
                 if(data[i].target == "_blank"){
                     ulHtml += '<a data-url="'+data[i].href+'" target="'+data[i].target+'">';
                 }else{
-                    ulHtml += '<a data-url="'+data[i].href+'">';
+                    ulHtml += '<a data-url="content.html" onclick=\'window.curUrl="'+data[i].href+'"\'>';
                 }
                 if(data[i].icon != undefined && data[i].icon != ''){
                     if(data[i].icon.indexOf("icon-") != -1){
@@ -156,7 +156,7 @@ layui.define(["element","jquery"],function(exports){
 				title += '<i class="layui-icon layui-unselect layui-tab-close" data-id="'+tabIdIndex+'">&#x1006;</i>';
 				element.tabAdd(tabFilter, {
 			        title : title,
-			        content :"<iframe src='"+_this.attr("data-url")+"' data-id='"+tabIdIndex+"'></frame>",
+			        content :"<iframe src='"+_this.attr("data-url")+"' data-id='"+tabIdIndex+"' onclick='alert(\"hello\")'></frame>",
 			        id : new Date().getTime()
 			    })
 				//当前窗口内容

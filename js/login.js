@@ -1,7 +1,4 @@
-layui.config({
-    base : "../../js/"
-})
-layui.use(['form','layer','jquery', 'session'],function(){
+layui.use(['form','layer','jquery','session'],function(){
     var form = layui.form,
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery,
