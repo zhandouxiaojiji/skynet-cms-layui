@@ -13,7 +13,7 @@ layui.use(['form','layer','jquery','session'],function(){
 
     //登录按钮
     form.on("submit(login)",function(data){
-        layer.msg(JSON.stringify(data.field));
+        // layer.msg(JSON.stringify(data.field));
         layui.session.setLastServerName(data.field.server);
         session.login(data.field.account, data.field.password);
         return false;
