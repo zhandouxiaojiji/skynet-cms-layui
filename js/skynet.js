@@ -4,7 +4,7 @@ layui.use(['form','layer','jquery','session'], function(exports){
         $ = layui.jquery,
         session = layui.session;
    	console.log(parent.curUrl);
-   	$('.childrenBody').append(parent.curUrl);
+   	// $('.childrenBody').append(parent.curUrl);
    	var url = parent.curUrl;
    	session.call(url, {}, function(data){
    		let content = data.content;
