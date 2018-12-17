@@ -16,21 +16,47 @@ layui.use(['form','layer','jquery','session'], function(exports){
             let element = $("#"+id)
             switch (a) {
                 case "ALERT":
-                    return function(){
-                        alert(action[2]);
-                        return false;
-                    }
+                    alert(action[2]);
+                    break;
                 case "CLICK":
-                    element.click(parse(action[2]));
+                    element.click(function(){
+                        let args = action[2];
+                        if (typeof(args[0]) == "object"){
+                            for(let i in args){
+                                parse(args[i]);
+                            }
+                        }else{
+                            parse(args);
+                        }
+                        return false;
+                    });
                     break;
                 case "POST":
                     element.click(function(){
-                        console.log("&&&&& click", action)
-                        session.call(action[2], {}, parse(action[4]))
+                        var param = {};
+                        for (let i in action[3]){
+                            let v = action[3][i];
+                            param[v[0]] = parse(v);
+                        }
+                        console.log(param);
+                        session.call(action[2], param, function(data){
+                            let cb = data.cb;
+                            if(typeof(cb[0])=="object"){
+                                for(let i in cb){
+                                    parse(cb[i]);
+                                }
+                            }else{
+                                parse(cb);
+                            }
+                        });
                         return false;
                     });
-                case "VALUE":
+                    break;
+                case "GET_VAL":
                     return element.val();
+                case "SET_VAL":
+                    element.val(action[2]);
+                    break;
                 case "SUBMIT":
                     break;
             }
