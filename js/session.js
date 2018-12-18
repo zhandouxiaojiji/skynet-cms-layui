@@ -1,5 +1,6 @@
-layui.define(function(exports){
+layui.define(['layer'], function(exports){
 	var $ = layui.jquery;
+    var layer = parent.layer === undefined ? layui.layer : top.layer;
 	var server;
 	var authorization;
 	function json_encode(data){
@@ -54,8 +55,13 @@ layui.define(function(exports){
     					console.log(api);
     					api.set("authorization", authorization);
     					window.location.href = "index.html";
-    				}
-    			}
+    				}else{
+                        layer.msg("login error:"+data.desc);
+                    }
+    			},
+                error:function(data){
+                    layer.msg("无法连接到服务器");
+                }
     		});
     	},
     	call:function(api, data, cb){
@@ -83,10 +89,14 @@ layui.define(function(exports){
         					window.location.href = "login.html";
                         }
     				} else {
-                        console.log("call "+api+", error:");
+                        layer.msg("call "+api+", error:"+data.desc);
                         console.log(data);
     				}
-    			}
+    			},
+                error:function(data){
+                    layer.msg("无法连接到服务器");
+                    // layer.msg(data);
+                }
     		});
     	}
     };
