@@ -14,6 +14,14 @@ layui.use(['bodyTab','form','element','layer','jquery','session'],function(){
 			openTabNum : "50",  //最大可打开窗口数量
 			url : "json/navs.json" //获取菜单json地址
 		});
+	let name = ""
+	for (i in window.serverlist){
+        let server = window.serverlist[i];
+        if(server.name == session.getLastServerName()){
+			$("#serverName").text(server.desc);
+        	break;
+        }
+    }   
 	var menu = session.call("/cms/view/menu", {}, function(data){
 		console.log(data);
 		let str = '';
@@ -34,6 +42,31 @@ layui.use(['bodyTab','form','element','layer','jquery','session'],function(){
 		}
 		$(".topLevelMenus").empty();
 		$(".topLevelMenus").append(str);
+
+		str = '';
+		str = str + '<li class="layui-nav-item" data-menu="'+data.top[0].name+'">';
+		str = str + '<a href="javascript:;"><i class="seraph icon-caidan"></i><cite id="mobileTopTitle">'
+			+data.top[0].title+'</cite></a>';
+		str = str + '<dl class="layui-nav-child">'
+		for(let i in data.top){
+			let v = data.top[i];
+			if(i == 0){
+				str += '<dd class="layui-this" data-menu="'+v.name+'">';
+			}else{
+				str += '<dd data-menu="'+v.name+'">';
+			}
+			let icon = '';
+			if(v.icon.charAt(0) == '&'){
+				icon = '"'+v.icon+'">'+v.icon;
+			}else{
+				icon = '"'+v.icon+'"';
+			}
+			str += '<a href="javascript:;"><i class="layui-icon" data-icon='+icon+'</i><cite>'+v.title+'</cite></a></dd>';
+		}
+		str = str + '</dl></li>'
+		$(".mobileTopLevelMenus").empty();
+		$(".mobileTopLevelMenus").append(str);
+
 		menuData = data.navs;
 		dataStr = menuData[data.top[0].name];
 		tab.render();
@@ -48,10 +81,9 @@ layui.use(['bodyTab','form','element','layer','jquery','session'],function(){
 			}
 			$(".layui-layout-admin").removeClass("showMenu");
 			$("body").addClass("site-mobile");
-			// getData($(this).data("menu"));
+			$("#mobileTopTitle").text(data.top[$(this).index()].title);
 			dataStr = menuData[$(this).data("menu")];
 			tab.render();
-			//渲染顶部窗口
 			tab.tabMove();
 		})
 

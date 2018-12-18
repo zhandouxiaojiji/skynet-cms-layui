@@ -3,12 +3,9 @@ layui.use(['form','layer','jquery','session'], function(exports){
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery,
         session = layui.session;
-    console.log(parent.curUrl);
-    // $('.childrenBody').append(parent.curUrl);
-    var url = parent.curUrl;
+    var url = parent.curUrl || "/cms/view/main";
     session.call(url, {}, function(data){
         let content = data.content;
-        console.log(data);
         $('.childrenBody').append(content);
         function parse(action){
             let id = action[0];
@@ -56,6 +53,14 @@ layui.use(['form','layer','jquery','session'], function(exports){
                     return element.val();
                 case "SET_VAL":
                     element.val(action[2]);
+                    break;
+                case "APPEND_VAL":
+                    element.val(element.val()+action[2]+'\n');
+                    break;
+                case "GET_TEXT":
+                    return element.text();
+                case "SET_TEXT":
+                    element.text(action[2]);
                     break;
                 case "SUBMIT":
                     break;
