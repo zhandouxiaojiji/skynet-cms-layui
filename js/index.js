@@ -21,7 +21,27 @@ layui.use(['bodyTab','form','element','layer','jquery','session'],function(){
 			$("#serverName").text(server.desc);
         	break;
         }
+    }
+
+    $('#serverSelect').empty();
+    for (i in window.serverlist){
+        let server = window.serverlist[i];
+        $('#serverSelect').append("<option value="+server.name+">"+server.desc+"</option>");
     }   
+    var last = session.getLastServerName();
+    if(last){
+        $('#serverSelect').val(last);
+    }
+    form.on('select', function(data) {
+    	console.log(data.value);
+    	if(data.value == layui.session.getLastServerName()){
+    		return;
+    	}
+    	layui.session.setLastServerName(data.value);
+        session.login(session.get("account"), session.get("password"));
+    })
+    form.render();
+
 	var menu = session.call("/cms/view/menu", {}, function(data){
 		console.log(data);
 		let str = '';

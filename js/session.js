@@ -26,9 +26,6 @@ layui.define(['layer'], function(exports){
 			});
     	},
     	getCurServer:function(){
-    		if (server){
-	    		return server;
-    		}
     		let name = api.getLastServerName();
     		for (i in window.serverlist){
 				let s = window.serverlist[i];
@@ -39,6 +36,8 @@ layui.define(['layer'], function(exports){
 			}
     	},
     	login:function(account, password){
+            api.set("account", account);
+            api.set("password", password);
     		server = api.getCurServer();
     		$.ajax({
     			type:"POST",
@@ -60,7 +59,13 @@ layui.define(['layer'], function(exports){
                     }
     			},
                 error:function(data){
-                    layer.msg("无法连接到服务器");
+                    let url = window.location.href
+                    if(url.indexOf("index.html")>0){
+                        alert("无法连接到服务器");
+                        parent.location.href = "login.html"
+                    }else{
+                        layer.msg("无法连接到服务器");
+                    }
                 }
     		});
     	},
@@ -83,8 +88,8 @@ layui.define(['layer'], function(exports){
     					cb(data);
     				} else if (data.err == 4) {
     					console.log("授权错误，回到登陆界面", authorization);
-                        if(parent){
-                            parent.location.href = "login.html";
+                        if(top.location!=self.location){
+                            top.location.href = "login.html";
                         }else{
         					window.location.href = "login.html";
                         }
