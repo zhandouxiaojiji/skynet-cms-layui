@@ -23,6 +23,10 @@ layui.use(['bodyTab','form','element','layer','jquery','session'],function(){
         }
     }
 
+ //    var headerH = $('.header').height();
+	// var tabH = $('layui-tab').height();
+	// $('.layui-tab').height($(window).height()-headerH-tabH);
+
     $('#serverSelect').empty();
     for (i in window.serverlist){
         let server = window.serverlist[i];

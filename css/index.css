@@ -50,9 +50,9 @@ iframe{ position:absolute; height:100%; width:100%; border:none;}
 /*顶部*/
 .header{ z-index:2000;}
 .logo{ color: #fff; float: left; line-height:60px; font-size:20px; padding:0 25px; text-align: center; width:150px;}
-.hideMenu{ float:left; width:20px; height:20px; margin-top:15px; font-size:17px; line-height:20px; text-align:center; padding:5px 5px; color:#fff; background-color:#1AA094; }
+.hideMenu{ float:left; width:20px; height:20px; margin-top:15px; font-size:17px; line-height:20px; text-align:center; padding:5px 5px; color:#fff; }
 .hideMenu:hover{ color:#fff; }
-.layui-nav cite{ margin-left: 5px;}
+.layui-nav cite{ margin-left: 0px;}
 /*顶部右侧*/
 .topLevelMenus{float:left;}
 .topLevelMenus li.layui-nav-item:hover{ background-color:rgba(221,221,221,0.2);}
@@ -89,12 +89,12 @@ iframe{ position:absolute; height:100%; width:100%; border:none;}
 
 /*layui-body*/
 .layui-body{overflow:hidden; border-top:5px solid #1AA094;border-left:2px solid #1AA094; background:#fff;}
-/*#top_tabs_box{ padding-right:138px; height:40px; border-bottom:1px solid #e2e2e2; }*/
+#top_tabs_box{ padding-right:138px; height:40px; border-bottom:1px solid #e2e2e2; }
 #top_tabs{ position: absolute; border-bottom:none;}
-/*.layui-tab-title .layui-this{ background-color:#1AA094; color:#fff; }*/
-/*.layui-tab-title .layui-this:after{ border:none; }*/
-.layui-tab-title li cite{ font-style: normal; padding-left:5px; }
-.clildFrame.layui-tab-content{ top:41px; position:absolute; bottom:0; width:100%; padding:0;}
+/*.layui-tab-title .layui-this{ background-color:#1AA094; color:#fff; }
+.layui-tab-title .layui-this:after{ border:none; }
+.layui-tab-title li cite{ font-style: normal; padding-left:5px; }*/
+.clildFrame.layui-tab-content{ top:51px; position:absolute; bottom:0; width:100%; padding:0;}
 /*多窗口页面操作下拉*/
 .closeBox{ position:absolute; right:0; background-color:#fff !important; color:#000; border-left:1px solid #e2e2e2; border-bottom:1px solid #e2e2e2; }
 .closeBox .layui-nav-item{ line-height:40px; }
@@ -116,7 +116,7 @@ iframe{ position:absolute; height:100%; width:100%; border:none;}
 .orange .layui-bg-black{ background-color:#e47214 !important; }
 /*蓝色*/
 .blue .layui-layout-admin .layui-header{ background-color:#3396d8 !important; }
-.blue .layui-bg-black,.blue .hideMenu{ background-color:#146aa2 !important; }
+/*.blue .layui-bg-black,.blue .hideMenu{ background-color:#146aa2 !important; }*/
 /*自定义*/
 .skinCustom{ visibility:hidden; }
 .skinCustom input{ width:48%; margin:5px 2% 5px 0; float:left; }
@@ -155,4 +155,5 @@ iframe{ position:absolute; height:100%; width:100%; border:none;}
 .header .layui-nav-child,.layui-body,.layui-layout-admin .layui-side,.header .layui-nav-bar{ top:50px !important;}
 .header .layui-nav .layui-nav-item,.header .layui-nav .layui-nav-item>a,.header,.logo{ line-height:50px !important; max-height:50px; !important;}
 .mobileTopLevelMenus{ float:left;}
+.layui-body{top:40px !important;}
 .hideMenu{ margin-top: 10px;}
