@@ -68,7 +68,10 @@ layui.use(['form', 'table', 'layer','jquery','session'], function(exports){
             }
         }
         for(let i in data.tables){
-            console.log(data.tables[i]);
+            let v = data.tables[i];
+            if(v.done){
+                v.done = parse_action(v.done);
+            }
             table.render(data.tables[i]);
         }
         for(let i in data.actions){
