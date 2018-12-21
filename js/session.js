@@ -86,7 +86,7 @@ layui.define(['layer'], function(exports){
     				if (data.err == 0) {
     					console.log("call "+api+", success:"+data);
     					cb(data);
-    				} else if (data.err == 4) {
+    				} else if (data.err == 4109) {
     					console.log("授权错误，回到登陆界面", authorization);
                         if(top.location!=self.location){
                             top.location.href = "login.html";

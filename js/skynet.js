@@ -1,5 +1,6 @@
-layui.use(['form','layer','jquery','session'], function(exports){
+layui.use(['form', 'table', 'layer','jquery','session'], function(exports){
     var form = layui.form,
+        table = layui.table,
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery,
         session = layui.session;
@@ -7,7 +8,7 @@ layui.use(['form','layer','jquery','session'], function(exports){
     session.call(url, {}, function(data){
         let content = data.content;
         $('.childrenBody').append(content);
-        function parse(action){
+        function parse_action(action){
             let id = action[0];
             let a = action[1];
             let element = $("#"+id)
@@ -20,10 +21,10 @@ layui.use(['form','layer','jquery','session'], function(exports){
                         let args = action[2];
                         if (typeof(args[0]) == "object"){
                             for(let i in args){
-                                parse(args[i]);
+                                parse_action(args[i]);
                             }
                         }else{
-                            parse(args);
+                            parse_action(args);
                         }
                         return false;
                     });
@@ -33,17 +34,17 @@ layui.use(['form','layer','jquery','session'], function(exports){
                         var param = {};
                         for (let i in action[3]){
                             let v = action[3][i];
-                            param[v[0]] = parse(v);
+                            param[v[0]] = parse_action(v);
                         }
                         console.log(param);
                         session.call(action[2], param, function(data){
                             let cb = data.cb;
                             if(typeof(cb[0])=="object"){
                                 for(let i in cb){
-                                    parse(cb[i]);
+                                    parse_action(cb[i]);
                                 }
                             }else{
-                                parse(cb);
+                                parse_action(cb);
                             }
                         });
                         return false;
@@ -66,8 +67,12 @@ layui.use(['form','layer','jquery','session'], function(exports){
                     break;
             }
         }
+        for(let i in data.tables){
+            console.log(data.tables[i]);
+            table.render(data.tables[i]);
+        }
         for(let i in data.actions){
-            parse(data.actions[i])
+            parse_action(data.actions[i])
         }
     })
 });
