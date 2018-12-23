@@ -113,6 +113,7 @@ h2.method{ font-size:18px; line-height:45px; padding-left:5px;}
 .loginBody .seraph.icon-qq:hover{ color:#0288d1;}
 .loginBody .seraph.icon-wechat:hover{ color:#00d20d;}
 .loginBody .seraph.icon-sina:hover{ color:#d32f2f;}
+.loginFooter{ width:100%; height:35px; line-height:35px; position:fixed; bottom:0px; left:0px; font-size:14px; color:#000; text-align:center;}
 .imgCode{ position:relative;}
 #imgCode img{ position:absolute; top:1px; right:1px; cursor:pointer;}
 /*用户等级*/
