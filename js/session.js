@@ -86,15 +86,15 @@ layui.define(['layer'], function(exports){
     				if (data.err == 0) {
     					console.log("call "+api+", success:"+data);
     					cb(data);
-    				} else if (data.err == 4109) {
+    				} else if (data.err == 4) {
     					console.log("授权错误，回到登陆界面", authorization);
                         if(top.location!=self.location){
-                            top.location.href = "login.html";
+                            top.location.href = "../../login.html";
                         }else{
         					window.location.href = "login.html";
                         }
     				} else {
-                        layer.msg("call "+api+", error:"+data.desc);
+                        layer.msg("call "+api+", error:"+data.desc+data.err);
                         console.log(data);
     				}
     			},
