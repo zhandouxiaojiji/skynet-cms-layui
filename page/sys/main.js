@@ -24,8 +24,8 @@ function getLangDate(){
 layui.config({
   base : "../../js/"
 })
-layui.use(['form','element','layer','jquery','session'],function(){
-	var form = layui.form,
+layui.use(['table','element','layer','jquery','session'],function(){
+	var table = layui.table,
 		session = layui.session,
         layer = parent.layer === undefined ? layui.layer : top.layer,
         element = layui.element;
@@ -38,6 +38,7 @@ layui.use(['form','element','layer','jquery','session'],function(){
     $(".panel a").click(function(){
         parent.addTab($(this));
     });
+    console.log(session.getCurServer());
     session.call('/cms/sys/main', {}, function(data){
 		table.render({
 			elem:'#info',
@@ -47,5 +48,7 @@ layui.use(['form','element','layer','jquery','session'],function(){
 			]],
 			data:data.list
 		});
+        $("#online").text(data.online)
+        $("#run_time").text(data.run_time)
 	})
 })

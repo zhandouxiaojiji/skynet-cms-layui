@@ -85,7 +85,9 @@ layui.define(['layer'], function(exports){
     			success:function(data){
     				if (data.err == 0) {
     					console.log("call "+api+", success:"+data);
-    					cb(data);
+                        if(cb){
+        					cb(data);
+                        }
     				} else if (data.err == 4) {
     					console.log("授权错误，回到登陆界面", authorization);
                         if(top.location!=self.location){
@@ -94,7 +96,7 @@ layui.define(['layer'], function(exports){
         					window.location.href = "login.html";
                         }
     				} else {
-                        layer.msg("call "+api+", error:"+data.desc+data.err);
+                        layer.msg("call "+api+", error:"+data.desc);
                         console.log(data);
     				}
     			},
