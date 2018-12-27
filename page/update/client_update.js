@@ -13,8 +13,8 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 		table.render({
 			elem:'#list',
 			cols:[[
-				{title:'版本号', field:'version', sort:true, width:150},
-				{title:'说明', field:'desc'},
+				{title:'版本号', field:'version', sort:true, width:80},
+				{title:'说明', field:'desc', edit: 'text'},
 				{title:'日期', field:'time', width:160},
 				{title:'提交版本', field:'git_version', width:100},
 				{title:'当前使用', field:'cur', type:'radio', width:100},
@@ -55,13 +55,51 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 			layer.open({
 				title: "打包日志",
 				maxWidth: 1000,
-				content: '<textarea class="layui-textarea" style="width:900px;height:500px">'+ret.output+'</textarea>'
+				content: '<textarea class="layui-textarea" style="width:900px;height:500px">'+ret.output+'</textarea>',
+                success: function(){
+                    $(".layui-textarea").scrollTop(500000);
+                }
 			});
 		})
 		return false;
 	})
 
-	table.on("toolbar(list)", function(data) {
-		// body...
+	table.on("tool(list)", function(obj) {
+        switch(obj.event){
+            case "del":
+                var index = layer.open({
+                    title: '删除版本',
+                    content: '确定删除版本'+obj.data.version+'?',
+                    btn: ['确定'],
+                    yes: function(){
+                        console.log("delete");
+                        layer.close(index);
+                        session.call("/cms/update/client_update/remove", {
+                            wrapper: $("#wrapper_name").val(),
+                            version: obj.data.version
+                        }, function(){
+                            console.log("done");
+                        })
+                    }
+                });
+                break;
+        }
 	})
+    
+    table.on("radio(list)", function(obj) {
+        var index = layer.open({
+            title: '切换版本',
+            content: '确定把当前版本切换到'+obj.data.version+'?',
+            btn: ['确定'],
+            yes: function() {
+                layer.close(index);
+                session.call("/cms/update/client_update/current", {
+                    wrapper: $("#wrapper_name").val(),
+                    version: obj.data.version
+                }, function(){
+                    console.log("done");
+                });
+            }
+        });
+    })
 })
