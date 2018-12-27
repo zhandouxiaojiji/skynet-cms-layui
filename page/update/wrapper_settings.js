@@ -15,9 +15,9 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer', 'laydate'], function()
 				elem:'#list',
 				cols:[[
 					{field:'select', type:'checkbox', width:50},
-					{title:'配置名', field:'name', sort:true},
+					{title:'配置名', field:'name', sort:true, width:150},
 					{title:'脚本路径', field:'shell'},
-					{title:'脚本参数', field:'param'},
+					{title:'脚本参数', field:'param', width:150},
 					{title:'输出路径', field:'path'}
 				]],
 				toolbar:'default',
@@ -31,7 +31,6 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer', 'laydate'], function()
 		var index = layui.layer.open({
 			title: '添加配置',
 			type: 2,
-			maxWidth: 1000,
 			content: 'wrapper_edit.html',
 			success: function() {
                 var body = layui.layer.getChildFrame('body', index);

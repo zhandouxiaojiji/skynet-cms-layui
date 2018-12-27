@@ -3,6 +3,7 @@ layui.define(['layer'], function(exports){
     var layer = parent.layer === undefined ? layui.layer : top.layer;
 	var server;
 	var authorization;
+    var mask_index;
 	function json_encode(data){
 		return JSON.stringify(data);
 	}
@@ -74,6 +75,11 @@ layui.define(['layer'], function(exports){
     			console.log("未登陆");
     			window.location.href = "login.html";
     		}
+            if(!mask_index){
+                mask_index = layer.open({
+                    type: 3
+                });
+            }
     		$.ajax({
     			type:"POST",
     			url:server.host + api,
@@ -83,6 +89,10 @@ layui.define(['layer'], function(exports){
     				xhr.setRequestHeader('Authorization', authorization);
     			},
     			success:function(data){
+                    if(mask_index){
+                        layer.close(mask_index);
+                        mask_index = null;
+                    }
     				if (data.err == 0) {
     					console.log("call "+api+", success:"+data);
                         if(cb){
@@ -101,6 +111,10 @@ layui.define(['layer'], function(exports){
     				}
     			},
                 error:function(data){
+                    if(mask_index){
+                        layer.close(mask_index);
+                        mask_index = null;
+                    }
                     layer.msg("无法连接到服务器");
                     // layer.msg(data);
                 }
