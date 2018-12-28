@@ -27,6 +27,7 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 				$("#wrapper_name").append('<option value="'+name+'">'+name+'</option>');
 			}
 			var name = get_last_wrapper();
+			$("#wrapper_name").val(name);
 			table.render({
 				elem:'#list',
 				cols:[[
