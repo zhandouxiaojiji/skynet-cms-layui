@@ -9,41 +9,47 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 	var $ = layui.jquery;
 	var versions = {};
 
-	function update_list(name) {
-		table.render({
-			elem:'#list',
-			cols:[[
-				{title:'版本号', field:'version', sort:true, width:80},
-				{title:'说明', field:'desc', edit: 'text'},
-				{title:'日期', field:'time', width:160},
-				{title:'提交版本', field:'git_version', width:100},
-				{title:'当前使用', field:'cur', type:'radio', width:100},
-				{title:'操作', field:'right', toolbar:'#toolbar', align:'center', width:110}
-			]],
-			page:true,
-			data:versions[name]
-		});
-		if(versions[name][0]){
-			var cur = versions[name][0].version;
-			var nums = cur.match(/\d+/g);
-			nums[2] = Number(nums[2])+1;
-			console.log(nums);
-			$("#new_version").val(nums[0]+'.'+nums[1]+'.'+nums[2]);
+	function get_last_wrapper() {
+		var last = session.get('last_wrapper');
+		if(last&&versions[last]){
+			return last;
+		}
+		for(var name in versions){
+			return name;
 		}
 	}
 
-	session.call('/cms/update/client_update/list', {}, function(data){
-		versions = data.versions;
-		$("#wrapper_name").empty();
-		for(var name in versions){
-			$("#wrapper_name").append('<option value="'+name+'">'+name+'</option>');
-		}
-		for(var name in versions){
-			update_list(name);
-			break;
-		}
-		form.render();
-	})
+	function update_list() {
+		session.call('/cms/update/client_update/list', {}, function(data){
+			versions = data.versions;
+			$("#wrapper_name").empty();
+			for(var name in versions){
+				$("#wrapper_name").append('<option value="'+name+'">'+name+'</option>');
+			}
+			var name = get_last_wrapper();
+			table.render({
+				elem:'#list',
+				cols:[[
+					{title:'版本号', field:'version', sort:true, width:80},
+					{title:'说明', field:'desc', edit: 'text'},
+					{title:'提交版本', field:'git'},
+					{title:'日期', field:'time', width:160},
+					{title:'当前使用', field:'cur', type:'radio', width:100},
+					{title:'操作', field:'right', toolbar:'#toolbar', align:'center', width:110}
+				]],
+				page:true,
+				data:versions[name]
+			});
+			if(versions[name][0]){
+				var cur = versions[name][0].version;
+				var nums = cur.match(/\d+/g);
+				nums[2] = Number(nums[2])+1;
+				console.log(nums);
+				$("#new_version").val(nums[0]+'.'+nums[1]+'.'+nums[2]);
+			}
+			form.render();
+		})
+	}
 
 	form.on("submit(*)", function(data) {
 		var field = data.field;
@@ -52,6 +58,7 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 			desc: field.desc,
 			wrapper: field.wrapper
 		}, function(ret) {
+			update_list();
 			layer.open({
 				title: "打包日志",
 				maxWidth: 1000,
@@ -64,6 +71,11 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 		return false;
 	})
 
+	form.on("select(wrapper_name)", function(data) {
+		session.set('last_wrapper', data.value);
+		update_list();
+	})
+
 	table.on("tool(list)", function(obj) {
         switch(obj.event){
             case "del":
@@ -72,13 +84,12 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
                     content: '确定删除版本'+obj.data.version+'?',
                     btn: ['确定'],
                     yes: function(){
-                        console.log("delete");
                         layer.close(index);
                         session.call("/cms/update/client_update/remove", {
                             wrapper: $("#wrapper_name").val(),
                             version: obj.data.version
                         }, function(){
-                            console.log("done");
+							update_list();
                         })
                     }
                 });
@@ -97,9 +108,21 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
                     wrapper: $("#wrapper_name").val(),
                     version: obj.data.version
                 }, function(){
-                    console.log("done");
+                    update_list();
                 });
             }
         });
     })
+
+    table.on("edit(list)", function(obj) {
+    	session.call("/cms/update/client_update/desc", {
+    		wrapper: $("#wrapper_name").val(),
+            version: obj.data.version,
+            desc: obj.data.desc
+    	}, function() {
+    		update_list();
+    	})
+    })
+
+    update_list();
 })
