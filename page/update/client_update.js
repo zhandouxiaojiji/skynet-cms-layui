@@ -20,7 +20,6 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 	}
 
 	function update_list() {
-		var style = "font-size:11px";
 		session.call('/cms/update/client_update/list', {}, function(data){
 			versions = data.versions;
 			$("#wrapper_name").empty();
@@ -32,15 +31,21 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 			table.render({
 				elem:'#list',
 				cols:[[
-					{title:'版本号', field:'version', sort:true, width:80, style:style},
-					{title:'说明', field:'desc', edit: 'text', style:style},
-					{title:'提交版本', field:'git', style:style},
-					{title:'日期', field:'time', width:170, style:style},
-					{title:'当前使用', field:'cur', type:'radio', width:80, style:style},
-					{title:'操作', field:'right', toolbar:'#toolbar', align:'center', width:80, style:style}
+					{title:'版本号', field:'version', sort:true, width:80},
+					{title:'说明', field:'desc', edit: 'text'},
+					{title:'提交版本', field:'git'},
+					{title:'日期', field:'time', width:170},
+					{title:'当前使用', field:'cur', type:'radio', width:80},
+					{title:'操作', field:'right', toolbar:'#toolbar', align:'center', width:80}
 				]],
 				page:true,
-				data:versions[name]
+				data:versions[name],
+				unresize: false,
+				limit: 15,
+				limits: [15,30,60,90],
+				text: {
+				    none: '暂无相关数据'
+				}
 			});
 			if(versions[name][0]){
 				var cur = versions[name][0].version;

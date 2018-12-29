@@ -19,6 +19,12 @@ layui.use(['table', 'jquery', 'session'], function(){
 			]],
 			toolbar:true,
 			page:true,
+			unresize: false,
+			limit: 20,
+			limits: [20,50,100],
+			text: {
+			    none: '暂无相关数据'
+			},
 			data:data.list
 		});
 	})
