@@ -153,7 +153,7 @@ iframe{ position:absolute; height:100%; width:100%; border:none;}
 
 /*修改顶部高度*/
 .header .layui-nav-child,.layui-body,.layui-layout-admin .layui-side,.header .layui-nav-bar{ top:50px !important;}
-.header .layui-nav .layui-nav-item,.header .layui-nav .layui-nav-item>a,.header,.logo{ line-height:50px !important; max-height:50px; !important;}
+.header .layui-nav .layui-nav-item,.header .layui-nav .layui-nav-item>a,.header,.logo{ line-height:50px !important; max-height:50px !important;}
 .mobileTopLevelMenus{ float:left;}
-.layui-body{top:40px !important;}
+.layui-body{top:40px !important;bottom: 0px !important}
 .hideMenu{ margin-top: 10px;}

@@ -142,7 +142,7 @@ layui.define(["element","jquery","session"],function(exports){
 				if(_this.find("i.seraph").attr("data-icon") != undefined){
 					title += '<i class="seraph '+_this.find("i.seraph").attr("data-icon")+'"></i>';
 				}else{
-					title += '<i class="layui-icon">'+_this.find("i.layui-icon").attr("data-icon")+'</i>&nbsp&nbsp';
+					title += '<i class="layui-icon">'+_this.find("i.layui-icon").attr("data-icon")+'</i>&nbsp';
 				}
 			}
 			//已打开的窗口中不存在
