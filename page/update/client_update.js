@@ -20,7 +20,7 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 	}
 
 	function update_list() {
-		var style = "font-size:10px";
+		var style = "font-size:11px";
 		session.call('/cms/update/client_update/list', {}, function(data){
 			versions = data.versions;
 			$("#wrapper_name").empty();
@@ -36,7 +36,7 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 					{title:'说明', field:'desc', edit: 'text', style:style},
 					{title:'提交版本', field:'git', style:style},
 					{title:'日期', field:'time', width:170, style:style},
-					{title:'当前使用', field:'cur', type:'radio', width:100, style:style},
+					{title:'当前使用', field:'cur', type:'radio', width:80, style:style},
 					{title:'操作', field:'right', toolbar:'#toolbar', align:'center', width:80, style:style}
 				]],
 				page:true,

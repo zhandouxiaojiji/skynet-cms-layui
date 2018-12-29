@@ -79,7 +79,7 @@ iframe{ position:absolute; height:100%; width:100%; border:none;}
 .layui-nav-itemed .layui-nav-child a{ padding-left:40px;}
 /*左侧搜索框*/
 .component{ width:180px; height:30px; margin:0 auto 5px; position:relative;}
-.component .layui-input{ height:30px; line-height: 30px; font-size:12px; border:none; transition: all 0.3s; background:rgba(255,255,255,0.05); }
+.component .layui-input{ height:30px; line-height: 30px; font-size:12px; border:none; transition: all 0.3s; background:rgba(255,255,255,5); }
 .component .layui-input:focus{ background:#fff; color:#000; }
 .component .layui-form-select dl{ top:33px; background:#fff; }
 .component .layui-icon{ position: absolute; right:8px; top:8px; color:#000; }
