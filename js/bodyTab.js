@@ -41,7 +41,7 @@ layui.define(["element","jquery","session"],function(exports){
                         ulHtml += '<i class="layui-icon" data-icon="'+data[i].icon+'">'+data[i].icon+'</i>';
                     }
                 }
-                ulHtml += '<cite>'+data[i].title+'</cite>';
+                ulHtml += '&nbsp<cite>'+data[i].title+'</cite>';
                 ulHtml += '<span class="layui-nav-more"></span>';
                 ulHtml += '</a>';
                 ulHtml += '<dl class="layui-nav-child">';
@@ -58,7 +58,7 @@ layui.define(["element","jquery","session"],function(exports){
                             ulHtml += '<i class="layui-icon" data-icon="'+data[i].children[j].icon+'">'+data[i].children[j].icon+'</i>';
                         }
                     }
-                    ulHtml += '<cite>'+data[i].children[j].title+'</cite></a></dd>';
+                    ulHtml += '&nbsp<cite>'+data[i].children[j].title+'</cite></a></dd>';
                 }
                 ulHtml += "</dl>";
             }else{
@@ -74,7 +74,7 @@ layui.define(["element","jquery","session"],function(exports){
                         ulHtml += '<i class="layui-icon" data-icon="'+data[i].icon+'">'+data[i].icon+'</i>';
                     }
                 }
-                ulHtml += '<cite>'+data[i].title+'</cite></a>';
+                ulHtml += '&nbsp<cite>'+data[i].title+'</cite></a>';
             }
             ulHtml += '</li>';
         }
@@ -84,7 +84,7 @@ layui.define(["element","jquery","session"],function(exports){
 	Tab.prototype.render = function() {
 		//显示左侧菜单
 		var _this = this;
-		$(".navBar ul").html('<li class="layui-nav-item layui-this"><a data-url="page/sys/main.html"><i class="layui-icon" data-icon=""></i><cite>后台首页</cite></a></li>').append(_this.navBar(dataStr)).height($(window).height()-210);
+		$(".navBar ul").html('<li class="layui-nav-item layui-this"><a data-url="page/sys/main.html"><i class="layui-icon" data-icon=""></i>&nbsp<cite>后台首页</cite></a></li>').append(_this.navBar(dataStr)).height($(window).height()-210);
 		element.init();  //初始化页面元素
 		$(window).resize(function(){
 			$(".navBar").height($(window).height()-210);
@@ -142,7 +142,7 @@ layui.define(["element","jquery","session"],function(exports){
 				if(_this.find("i.seraph").attr("data-icon") != undefined){
 					title += '<i class="seraph '+_this.find("i.seraph").attr("data-icon")+'"></i>';
 				}else{
-					title += '<i class="layui-icon">'+_this.find("i.layui-icon").attr("data-icon")+'</i>';
+					title += '<i class="layui-icon">'+_this.find("i.layui-icon").attr("data-icon")+'</i>&nbsp';
 				}
 			}
 			//已打开的窗口中不存在

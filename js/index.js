@@ -48,6 +48,7 @@ layui.use(['bodyTab','form','element','layer','jquery','session'],function(){
 
 	var menu = session.call("/cms/view/menu", {}, function(data){
 		console.log(data);
+
 		let str = '';
 		for(let i in data.top){
 			let v = data.top[i];
@@ -62,14 +63,14 @@ layui.use(['bodyTab','form','element','layer','jquery','session'],function(){
 			}else{
 				icon = '"'+v.icon+'"';
 			}
-			str += '<a href="javascript:;"><i class="layui-icon" data-icon='+icon+'</i><cite>'+v.title+'</cite></a></li>';
+			str += '<a href="javascript:;"><i class="layui-icon" data-icon='+icon+'</i>&nbsp<cite>'+v.title+'</cite></a></li>';
 		}
 		$(".topLevelMenus").empty();
 		$(".topLevelMenus").append(str);
 
 		str = '';
 		str = str + '<li class="layui-nav-item" data-menu="'+data.top[0].name+'">';
-		str = str + '<a href="javascript:;"><i class="seraph icon-caidan"></i><cite id="mobileTopTitle">'
+		str = str + '<a href="javascript:;"><i class="seraph icon-caidan">&nbsp</i><cite id="mobileTopTitle">'
 			+data.top[0].title+'</cite></a>';
 		str = str + '<dl class="layui-nav-child">'
 		for(let i in data.top){
@@ -85,7 +86,7 @@ layui.use(['bodyTab','form','element','layer','jquery','session'],function(){
 			}else{
 				icon = '"'+v.icon+'"';
 			}
-			str += '<a href="javascript:;"><i class="layui-icon" data-icon='+icon+'</i><cite>'+v.title+'</cite></a></dd>';
+			str += '<a href="javascript:;"><i class="layui-icon" data-icon='+icon+'</i>&nbsp<cite>'+v.title+'</cite></a></dd>';
 		}
 		str = str + '</dl></li>'
 		$(".mobileTopLevelMenus").empty();

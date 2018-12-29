@@ -20,6 +20,7 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 	}
 
 	function update_list() {
+		var style = "font-size:10px";
 		session.call('/cms/update/client_update/list', {}, function(data){
 			versions = data.versions;
 			$("#wrapper_name").empty();
@@ -31,12 +32,12 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 			table.render({
 				elem:'#list',
 				cols:[[
-					{title:'版本号', field:'version', sort:true, width:80},
-					{title:'说明', field:'desc', edit: 'text'},
-					{title:'提交版本', field:'git'},
-					{title:'日期', field:'time', width:160},
-					{title:'当前使用', field:'cur', type:'radio', width:100},
-					{title:'操作', field:'right', toolbar:'#toolbar', align:'center', width:110}
+					{title:'版本号', field:'version', sort:true, width:80, style:style},
+					{title:'说明', field:'desc', edit: 'text', style:style},
+					{title:'提交版本', field:'git', style:style},
+					{title:'日期', field:'time', width:170, style:style},
+					{title:'当前使用', field:'cur', type:'radio', width:100, style:style},
+					{title:'操作', field:'right', toolbar:'#toolbar', align:'center', width:80, style:style}
 				]],
 				page:true,
 				data:versions[name]
