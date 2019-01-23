@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>付费查询</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../css/public.css" media="all" />
+</head>
+<script type="text/html" id="toolbar">
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<body class="childrenBody">
+	<blockquote class="layui-elem-quote">
+		<form class="layui-form">
+			<div class="layui-inline" style="width: 120px">
+				<select name="wrapper" lay-filter="wrapper_name" id="wrapper_name">
+					<option value="0">测试服</option>
+					<option value="1">正式服</option>
+				</select>
+			</div>
+			<div class="layui-inline">
+				<a class="layui-label">日期</a>
+				<div class="layui-input-inline"  style="width: 100px">
+					<input name="begin_time" type="text" class="layui-input" lay-verify="required" placeholder="0000-00-00" id="begin_time" />
+				</div>
+				<a class="layui-label">~</a>
+				<div class="layui-input-inline"  style="width: 100px">
+					<input name="end_time" type="text" class="layui-input" lay-verify="required" placeholder="0000-00-00" id="end_time" />
+				</div>
+			</div>
+			<div class="layui-inline" style="width: 120px">
+				<select name="wrapper" lay-filter="platform" id="platform">
+					<option value="*">所有平台</option>
+					<option value="Android">Android</option>
+					<option value="AppStore">AppStore</option>
+				</select>
+			</div>
+			<div class="layui-inline" style="width: 120px">
+				<select name="wrapper" lay-filter="platform" id="platform">
+					<option value="*">所有渠道</option>
+					<option value="华为">华为</option>
+					<option value="vivo">vivo</option>
+					<option value="oppo">oppo</option>
+					<option value="腾讯">腾讯</option>
+				</select>
+			</div>
+			<div>
+				<div class="layui-inline">
+					<div class="layui-input-inline" style="width: 549px">
+					<input name="addition" type="text" class="layui-input" placeholder="附加条件" id="addition"/>
+					</div>
+					<a class="layui-btn" lay-submit lay-filter="*" style="font-size: 13px">查询</a>
+				</div>
+			</div>
+		</form>
+	</blockquote>
+	<table id="list" lay-filter="list"></table>
+
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/config.js"></script>
+	<script type="text/javascript" src="query.js"></script>
+</body>
+</html>
