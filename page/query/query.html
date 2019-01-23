@@ -19,7 +19,7 @@
 	<blockquote class="layui-elem-quote">
 		<form class="layui-form">
 			<div class="layui-inline" style="width: 120px">
-				<select name="wrapper" lay-filter="wrapper_name" id="wrapper_name">
+				<select name="db" lay-filter="db" id="db">
 					<option value="0">测试服</option>
 					<option value="1">正式服</option>
 				</select>
@@ -35,14 +35,21 @@
 				</div>
 			</div>
 			<div class="layui-inline" style="width: 120px">
-				<select name="wrapper" lay-filter="platform" id="platform">
+				<select name="product" lay-filter="product" id="product">
+					<option value="*">所有产品</option>
+					<option value="产品1">产品1</option>
+					<option value="产品2">产品2</option>
+				</select>
+			</div>
+			<div class="layui-inline" style="width: 120px">
+				<select name="platform" lay-filter="platform" id="platform">
 					<option value="*">所有平台</option>
 					<option value="Android">Android</option>
 					<option value="AppStore">AppStore</option>
 				</select>
 			</div>
 			<div class="layui-inline" style="width: 120px">
-				<select name="wrapper" lay-filter="platform" id="platform">
+				<select name="channel" lay-filter="channel" id="channel">
 					<option value="*">所有渠道</option>
 					<option value="华为">华为</option>
 					<option value="vivo">vivo</option>
@@ -50,9 +57,14 @@
 					<option value="腾讯">腾讯</option>
 				</select>
 			</div>
+			<div class="layui-inline" style="width: 120px">
+				<select name="query" lay-filter="query" id="query">
+					<option value="查询所有">查询所有</option>
+				</select>
+			</div>
 			<div>
 				<div class="layui-inline">
-					<div class="layui-input-inline" style="width: 549px">
+					<div class="layui-input-inline" style="width: 492px">
 					<input name="addition" type="text" class="layui-input" placeholder="附加条件" id="addition"/>
 					</div>
 					<a class="layui-btn" lay-submit lay-filter="*" style="font-size: 13px">查询</a>
