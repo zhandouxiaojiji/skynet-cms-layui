@@ -24,11 +24,6 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer', 'laydate'], function()
 	});
 	session.call("/cms/query/setting", {action:"get"}, function(data) {
 		var settings = data.settings
-		$('#db').empty();
-    	for (var i in settings.db_list){
-        	let db = settings.db_list[i];
-        	$('#db').append("<option value="+db.name+">"+db.name+"</option>");
-    	}
 		$('#platform').empty();
     	$('#platform').append('<option value="*">所有平台<option>');
 		for(var i in settings.platform_list){
