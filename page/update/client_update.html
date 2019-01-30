@@ -15,6 +15,15 @@
 <script type="text/html" id="toolbar">
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
+<script type="text/html" id="switchCur">
+  <input type="checkbox" name="cur" value="{{d.version}}" lay-skin="switch" lay-text="" lay-filter="cur" {{ d.cur ? 'checked' : '' }}>
+</script>
+<script type="text/html" id="switchCurAndroid">
+  <input type="checkbox" name="curAndroid" value="{{d.version}}" lay-skin="switch" lay-text="" lay-filter="curAndroid" {{ d.cur_android ? 'checked' : '' }}>
+</script>
+<script type="text/html" id="switchCurIOS">
+  <input type="checkbox" name="curIOS" value="{{d.version}}" lay-skin="switch" lay-text="" lay-filter="curIOS" {{ d.cur_ios ? 'checked' : '' }}>
+</script>
 <body class="childrenBody">
 	<blockquote class="layui-elem-quote">
 		<form class="layui-form">

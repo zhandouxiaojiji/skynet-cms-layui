@@ -19,6 +19,24 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 		}
 	}
 
+	function switch_version(type, version) {
+		var index = layer.open({
+            title: '切换版本',
+            content: '确定把当前版本切换到'+version+'?',
+            btn: ['确定'],
+            yes: function() {
+                layer.close(index);
+                session.call("/cms/update/client_update/current", {
+                    wrapper: $("#wrapper_name").val(),
+                    type: type,
+                    version: version
+                }, function(){
+                    update_list();
+                });
+            }
+        });
+	}
+
 	function update_list() {
 		session.call('/cms/update/client_update/list', {}, function(data){
 			versions = data.versions;
@@ -35,7 +53,9 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 					{title:'说明', field:'desc', edit: 'text'},
 					{title:'提交版本', field:'git'},
 					{title:'日期', field:'time', width:170},
-					{title:'当前使用', field:'cur', type:'radio', width:80},
+					{title:'主版本', field:'cur', templet: '#switchCur', width:110},
+					{title:'Android版本', field:'cur_android', templet: '#switchCurAndroid', width:110},
+					{title:'iOS版本', field:'cur_ios', templet: '#switchCurIOS', width:110},
 					{title:'操作', field:'right', toolbar:'#toolbar', align:'center', width:80}
 				]],
 				page:true,
@@ -54,6 +74,18 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
 				console.log(nums);
 				$("#new_version").val(nums[0]+'.'+nums[1]+'.'+nums[2]);
 			}
+			form.on('switch(cur)', function(obj){
+				// layer.tips(this.value + '：'+ obj.elem.checked, obj.othis);
+				switch_version("cur", this.value);
+			});
+			form.on('switch(curAndroid)', function(obj){
+				// layer.tips(this.value + '：'+ obj.elem.checked, obj.othis);
+				switch_version("cur_android", this.value);
+			});
+			form.on('switch(curIOS)', function(obj){
+				// layer.tips(this.value + '：'+ obj.elem.checked, obj.othis);
+				switch_version("cur_ios", this.value);
+			});
 			form.render();
 		})
 	}
@@ -104,22 +136,22 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
         }
 	})
     
-    table.on("radio(list)", function(obj) {
-        var index = layer.open({
-            title: '切换版本',
-            content: '确定把当前版本切换到'+obj.data.version+'?',
-            btn: ['确定'],
-            yes: function() {
-                layer.close(index);
-                session.call("/cms/update/client_update/current", {
-                    wrapper: $("#wrapper_name").val(),
-                    version: obj.data.version
-                }, function(){
-                    update_list();
-                });
-            }
-        });
-    })
+    // table.on("radio(list)", function(obj) {
+    //     var index = layer.open({
+    //         title: '切换版本',
+    //         content: '确定把当前版本切换到'+obj.data.version+'?',
+    //         btn: ['确定'],
+    //         yes: function() {
+    //             layer.close(index);
+    //             session.call("/cms/update/client_update/current", {
+    //                 wrapper: $("#wrapper_name").val(),
+    //                 version: obj.data.version
+    //             }, function(){
+    //                 update_list();
+    //             });
+    //         }
+    //     });
+    // })
 
     table.on("edit(list)", function(obj) {
     	session.call("/cms/update/client_update/desc", {
@@ -131,5 +163,8 @@ layui.use(['table', 'jquery', 'session', 'form', 'layer'], function(){
     	})
     })
 
+
     update_list();
+
+
 })
