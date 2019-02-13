@@ -50,5 +50,6 @@ layui.use(['table','element','layer','jquery','session'],function(){
 		});
         $("#online").text(data.online)
         $("#run_time").text(data.run_time)
+        $("#sign_in").text(data.sign_in)
 	})
 })
